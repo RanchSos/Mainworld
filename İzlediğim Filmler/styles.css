@@ -1,0 +1,178 @@
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #E9E9E9;
+  border-left: 1px solid #BBBBBB;
+  }
+  ::-webkit-scrollbar-thumb {
+  background-color: #555555;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+  background-color: #333333;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: black; /* Body arka planını siyah yapar */
+  color: #340000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Menüyü üstte, içerik ortada ve footer altta düzenler */
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #111111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px solid #340000;
+}
+
+header h1 {
+  font-family: Oswald;
+  font-size: 2.5rem;
+  margin: 0;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+nav a {
+  font-family: Kanit;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap; /* Film afişlerini yanyana sıralar */
+  justify-content: flex-start; /* Afişleri yan yana hizalar */
+  align-items: flex-start; /* Afişleri yukarıdan aşağı sıralar */
+}
+.sex{
+  width: 100%;
+  height: 100%;
+}
+
+.film-section {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.film-post {
+  border: 1px solid #340000;
+  background-color: #000000;
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px; /* Sabit genişlik değeri */
+  flex: 1 0 21%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.film-post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.film-post .film-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Siyah arka plan rengi */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.film-post:hover img {
+  opacity: 0.5;
+}
+
+.film-post:hover .film-content {
+  opacity: 1;
+ 
+}
+
+.film-post h3 {
+  color: white; /* Başlık rengi beyaz yapılıyor */
+  margin-top: 20px; /* Başlık ile bloğun üstü arasında 20px boşluk bırakılıyor */
+  text-align: center; /* Başlığı merkeziyor */
+  position: absolute;
+  top: 10px; /* Başlığı 10px üstten konumlandırıyor */
+  left: 10px; /* Başlığı 10px soldan konumlandırıyor */
+  opacity: 0; /* Başlık başlangıçta görünmez yapılıyor */
+  transition: opacity 0.2s ease;
+}
+
+.film-post:hover h3 {
+  opacity: 1; /* Mouse ile bloğun üzerine gelindiğinde başlık görünür yapılıyor */
+}
+
+.film-post p {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white; /* Yazı rengi beyaz yapılıyor */
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.film-post:hover p {
+  opacity: 1;
+}
+
+
+
+.film-post h2 {
+  color: white; /* Başlık rengi siyah yapılıyor */
+  margin-top: 20px; /* Başlık ile bloğun üstü arasında 20px boşluk bırakılıyor */
+  text-align: center; /* Başlığı merkeziyor */
+}
+
+
+.film-post h3 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: black; /* Footer arka planını siyah yapar */
+  color: white;
+}
