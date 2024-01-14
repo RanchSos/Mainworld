@@ -1,64 +1,92 @@
-body{
-  background-color: black;
-  margin: 0;
-}
-.katalog {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.katalog-resimler {
+body {
+  background-color: #fff;
   display: flex;
-  transition: transform 0.3s ease-in-out;
-  width: 500%; /* 5 resim olduğu için genişlik 500% olarak ayarlandı */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column; /* Yatay yerine dikey düzenleme */
+  margin: 0;
+  transition: 1.5s ease;
 }
 
-.katalog-resimler img {
-  width: 20%; /* Her resmin genişliği eşit olarak ayarlandı */
-  max-height:900px ;
-  min-height:900px ;
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
-.sol-kaydir,
-.sag-kaydir {
+.snowflake {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 10px;
+  font-size: 2em;
+  user-select: none;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.yazı {
+  color: #fff;
+  transition: 2s;
+}
+
+.custom-font {
+  flex-direction: row;
+  position: relative;
+  font-size: 75px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  font-family: Papyrus, fantasy;
+  transition: 2s;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+a {
+  color: #000;
+  transition: 2s;
+}
+
+.yeni {
+  background-color: yellow;
+  transition: 2s;
+  filter: blur(1px);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+}
+
+.first-font {
+  font-family: Papyrus, fantasy;
+}
+
+h2.custom-font a span:hover {
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.6), 0 0 45px rgba(255, 255, 255, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.2);
+  transition: 2s;
+  animation: flicker 1s infinite alternate;
+}
+
+body.hover-effect {
   background-color: #000000;
   color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.sol-kaydir {
-  left: 0;
-}
-
-.sag-kaydir {
-  right: 0;
-}
-.kutu {
-  width: 500px;
-  height: 200px;
-  background-color: #f0f0f0;
-  border: 2px solid #ff0000;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 20px; /* Kutunun köşelerini 10 piksel yuvarlayın */
-
-}
-
-/* Resimleri boyutlandırmak için CSS */
-.kutu img {  
-  height: auto;
-  max-width: 50%;
-  max-height: 50%;
-}
-.kutular {
-  display: flex;
-  justify-content: space-evenly; /* Kutuları eşit aralıklarla yatay olarak hizalıyoruz */
 }

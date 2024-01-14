@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helloooo</title>
+    <link rel="stylesheet" href="indec.css" />
+  </head>
+  <body>
+    <canvas id="c1"></canvas>
+
+    <div class="onediv"></div>
+    <div id="2" class="container">
+      <p class="header">Çalışmaya Çabaladıklarım:</p>
+      <div class="image-container">
+        <div
+          class="image-box"
+          onclick="openModal('/resim3.jpeg', 'Image 1', 'Modal Content 1')"
+        >
+          <a href="#"><img class="image" src="/resim1.jpg" alt="Image 1" /></a>
+        </div>
+        <div
+          class="image-box"
+          onclick="openModal('/resim2.jpg', 'Image 2', 'Modal Content 2')"
+        >
+          <a href="#"><img class="image" src="/resim2.jpg" alt="Image 2" /></a>
+        </div>
+        <div class="image-box2">
+          <img class="image" src="/İzlediğim Filmler/bbb.jpg" alt="Image 3" />
+        </div>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        <img class="modalImage" id="modalImage" src="" alt="" />
+        <div id="modalText"></div>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("c1");
+      const c = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      window.addEventListener("wheel", (event) => {
+        if (event.deltaY < 0) speed *= 1.1;
+        else speed *= 0.9;
+        if (speed < 0.01) speed = 0.01;
+        else if (speed > 0.1) speed = 0.1;
+      });
+      class Star {
+        constructor() {
+          this.x = Math.random() * canvas.width - canvas.width / 2;
+          this.y = Math.random() * canvas.height - canvas.height / 2;
+          this.px, this.py;
+          this.z = Math.random() * 4;
+        }
+        update() {
+          this.px = this.x;
+          this.py = this.y;
+          this.z += speed;
+          this.x += this.x * (speed * 0.2) * this.z;
+          this.y += this.y * (speed * 0.2) * this.z;
+          if (
+            this.x > canvas.width / 2 + 50 ||
+            this.x < -canvas.width / 2 - 50 ||
+            this.y > canvas.height / 2 + 50 ||
+            this.y < -canvas.height / 2 - 50
+          ) {
+            this.x = Math.random() * canvas.width - canvas.width / 2;
+            this.y = Math.random() * canvas.height - canvas.height / 2;
+            this.px = this.x;
+            this.py = this.y;
+            this.z = 0;
+          }
+        }
+        show() {
+          c.lineWidth = this.z;
+          c.beginPath();
+          c.moveTo(this.x, this.y);
+          c.lineTo(this.px, this.py);
+          c.stroke();
+        }
+      }
+      let speed = 0.05;
+      let stars = [];
+      for (let i = 0; i < 800; i++) stars.push(new Star());
+      c.fillStyle = "rgba(0, 0, 0, 0.4)";
+      c.strokeStyle = "rgb(255, 255, 255)";
+      c.translate(canvas.width / 2, canvas.height / 2);
+      function draw() {
+        requestAnimationFrame(draw);
+        c.fillRect(
+          -canvas.width / 2,
+          -canvas.height / 2,
+          canvas.width,
+          canvas.height
+        );
+        for (let s of stars) {
+          s.update();
+          s.show();
+        }
+      }
+      draw();
+      function openModal(imageSrc, altText, modalText) {
+        document.getElementById("myModal").style.display = "block";
+        document.getElementById("modalImage").src = imageSrc;
+        document.getElementById("modalImage").alt = altText;
+        document.getElementById("modalText").innerHTML = modalText;
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+      document.addEventListener("wheel", (event) => {
+        if (event.deltaY > 0) {
+          const targetDiv = document.getElementById("2");
+
+          if (targetDiv) {
+            targetDiv.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
