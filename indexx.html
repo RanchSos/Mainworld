@@ -5,38 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Helloooo</title>
     <link rel="stylesheet" href="indec.css" />
-    <style>
-      #enYavasHizDiv,
-      #container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 30px;
-        color: white;
-        display: none;
-      }
-
-      #container p.header {
-        text-align: center;
-      }
-
-      #container .image-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-      }
-
-      #container .image-box {
-        flex: 0 0 30%; /* Yüzde değeri isteğe bağlı olarak değiştirilebilir */
-        margin-right: 10px; /* Boşluk miktarı isteğe bağlı olarak değiştirilebilir */
-      }
-
-      #container .image-box img {
-        width: 100%;
-        height: auto;
-      }
-    </style>
   </head>
   <body>
     <canvas id="c1"></canvas>
@@ -45,7 +13,8 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <div class="modal-content">
         <img class="modalImage" id="modalImage" src="" alt="" />
-        <div id="modalText"></div>
+        <div class="modalHeader" id="modalHeader"></div>
+        <div class="modalText" id="modalText"></div>
       </div>
     </div>
 
@@ -54,15 +23,15 @@
       <div class="image-container">
         <div
           class="image-box"
-          onclick="openModal('/resim3.jpeg', 'Image 1', 'Modal Content 1')"
+          onclick="openModal('small.jpg', 'Image 1','İçerik 1', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium hic inventore ullam, dolores nobis provident maiores aliquam aperiam illum odio nulla quasi vero deserunt quaerat ea eum sed labore, neque esse quis pariatur! Natus, aut dignissimos mollitia, error dolores nulla culpa quae optio qui, ea perferendis voluptatum deserunt debitis magnam doloremque sed. Repudiandae voluptate dignissimos doloribus numquam omnis odit soluta corporis animi earum. Unde provident, enim, porro quo nobis nihil quae iusto accusamus beatae quisquam est sint fugiat eveniet quaerat error nesciunt corporis incidunt laudantium corrupti explicabo quibusdam omnis consequatur? Possimus dignissimos repudiandae saepe quidem reiciendis, accusamus dicta minus corrupti.')"
         >
-          <a href="#"><img class="image" src="/resim1.jpg" alt="Image 1" /></a>
+          <a href="#"><img class="image" src="resim1.jpg" alt="Image 1" /></a>
         </div>
         <div
           class="image-box"
-          onclick="openModal('/resim2.jpg', 'Image 2', 'Modal Content 2')"
+          onclick="openModal('king.jpg', 'Image 2','İçerik 2', 'Modal Content 2')"
         >
-          <a href="#"><img class="image" src="/resim2.jpg" alt="Image 2" /></a>
+          <a href="#"><img class="image" src="resim2.jpg" alt="Image 2" /></a>
         </div>
         <div class="image-box2">
           <img class="image" src="/İzlediğim Filmler/bbb.jpg" alt="Image 3" />
@@ -70,9 +39,20 @@
       </div>
     </div>
 
-    <div id="enYavasHizDiv">U find me</div>
+    <div id="enYavasHizDiv">
+      <div class="button">Click me!</div>
+    </div>
 
     <script>
+      document.addEventListener("wheel", (event) => {
+        if (event.deltaY > 0) {
+          const targetDiv = document.getElementById("enYavasHizDiv");
+
+          if (targetDiv) {
+            targetDiv.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
       const canvas = document.getElementById("c1");
       const c = canvas.getContext("2d");
       canvas.width = window.innerWidth;
@@ -138,13 +118,24 @@
           s.update();
           s.show();
         }
+        var targetDiv = document.getElementById("enYavasHizDiv");
+        var starss = document.getElementById("c1");
 
         if (speed <= 0.01) {
           enYavasHizDiv.style.display = "block";
         } else {
           enYavasHizDiv.style.display = "none";
         }
-
+        targetDiv.addEventListener("mouseover", function () {
+          speed = 0.001;
+        });
+        targetDiv.addEventListener("mouseout", function () {
+          speed = 0.005;
+        });
+        targetDiv.addEventListener("click", function () {
+          starss.remove();
+          targetDiv.remove();
+        });
         if (speed >= 0.1) {
           container.style.display = "block";
         } else {
@@ -152,25 +143,17 @@
         }
       }
       draw();
-      function openModal(imageSrc, altText, modalText) {
+      function openModal(imageSrc, altText, modalHeader, modalText) {
         document.getElementById("myModal").style.display = "block";
         document.getElementById("modalImage").src = imageSrc;
         document.getElementById("modalImage").alt = altText;
+        document.getElementById("modalHeader").innerHTML = modalHeader;
         document.getElementById("modalText").innerHTML = modalText;
       }
 
       function closeModal() {
         document.getElementById("myModal").style.display = "none";
       }
-      document.addEventListener("wheel", (event) => {
-        if (event.deltaY > 0) {
-          const targetDiv = document.getElementById("enYavasHizDiv");
-
-          if (targetDiv) {
-            targetDiv.scrollIntoView({ behavior: "smooth" });
-          }
-        }
-      });
     </script>
   </body>
 </html>

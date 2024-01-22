@@ -91,40 +91,83 @@ body {
   position: absolute;
   top: 15px;
   right: 15px;
-  color: #000000;
+  color: #610606;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
 }
-
+.close:hover {
+  color: red;
+}
 .modal {
+  border-radius: 20px;
   display: none;
   position: absolute;
-  width: 1000px;
+  width: 800px;
   height: 800px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
   animation: fadeIn 0.8s ease;
   z-index: 1;
+  color: white;
 }
-
 .modal-content {
   display: block;
   width: 100%;
   max-height: 80%;
 }
-
 .modalImage {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
   height: 350px;
 }
-
+.modalText {
+  margin: 25px;
+}
+.modalHeader {
+  margin: 10px;
+}
 #container,
 #enYavasHizDiv {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: fadeIn 0.5s ease-in-out;
-  transition: 0.5s ease;
+  font-size: 30px;
+  color: white;
+  display: none;
+}
+#container p.header {
+  text-align: center;
+}
+
+#container .image-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#container .image-box {
+  flex: 0 0 30%;
+  margin-right: 10px;
+}
+
+#container .image-box img {
+  width: 100%;
+  height: auto;
+}
+.button {
+  text-align: center;
+  width: 140px;
+  height: 40px;
+  color: white;
+  background: red;
+  cursor: pointer;
+}
+.button:hover {
+  background: #000;
+}
+.button:hover + Star {
+  animation-play-state: paused;
 }
