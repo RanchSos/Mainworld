@@ -1,0 +1,32 @@
+body {
+  background-color: black;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+.container img {
+  width: 500px; /* Gif'in genişliğini ve yüksekliğini ayarlayın */
+  height: 500px;
+}
+
+.container p {
+  color: white; /* Yazı rengini istediğiniz gibi ayarlayın */
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%; /* Kutunun genişliğini ayarlayın */
+  height: 10px; /* Kutunun gölge kalınlığını ayarlayın */
+}
